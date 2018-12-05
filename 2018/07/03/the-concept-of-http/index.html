@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/skyrin-180.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/skyrin-32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/skyrin-16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'Y45INZ7E93',
+      apiKey: 'e044360fd0bdb0a9e0a36f2f714e0054',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="HTTP 的定义HTTP (Hypertext Transfer Protocol) 即超文本传输协议，和 HTML (Hypertext Markup Language) 超文本标记语⾔一起诞⽣，用于在⽹络上请求和传输 HTML 内容。 超文本 (Hypertext)，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的超链接 (Hyperlink)。 以上定义中 Hyper 有拓展的一层">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 的基础概念">
+<meta property="og:url" content="https://skyrin.cc/2018/07/03/the-concept-of-http/index.html">
+<meta property="og:site_name" content="Skyrin&#39;s Blog">
+<meta property="og:description" content="HTTP 的定义HTTP (Hypertext Transfer Protocol) 即超文本传输协议，和 HTML (Hypertext Markup Language) 超文本标记语⾔一起诞⽣，用于在⽹络上请求和传输 HTML 内容。 超文本 (Hypertext)，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的超链接 (Hyperlink)。 以上定义中 Hyper 有拓展的一层">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-981fa1867cd64b18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-8085215a6eea2a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-05T01:59:05.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP 的基础概念">
+<meta name="twitter:description" content="HTTP 的定义HTTP (Hypertext Transfer Protocol) 即超文本传输协议，和 HTML (Hypertext Markup Language) 超文本标记语⾔一起诞⽣，用于在⽹络上请求和传输 HTML 内容。 超文本 (Hypertext)，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的超链接 (Hyperlink)。 以上定义中 Hyper 有拓展的一层">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3551539-981fa1867cd64b18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="https://skyrin.cc/2018/07/03/the-concept-of-http/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>HTTP 的基础概念 | Skyrin's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyrin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://skyrin.cc/2018/07/03/the-concept-of-http/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="skyrin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyrin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTTP 的基础概念
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-03 09:05:00" itemprop="dateCreated datePublished" datetime="2018-07-03T09:05:00+08:00">2018-07-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-05 09:59:05" itemprop="dateModified" datetime="2018-12-05T09:59:05+08:00">2018-12-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/03/the-concept-of-http/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/07/03/the-concept-of-http/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="HTTP-的定义"><a href="#HTTP-的定义" class="headerlink" title="HTTP 的定义"></a>HTTP 的定义</h3><p>HTTP (Hypertext Transfer Protocol) 即超文本传输协议，和 HTML (Hypertext Markup Language) 超文本标记语⾔一起诞⽣，用于在⽹络上请求和传输 HTML 内容。</p>
+<p>超文本 (Hypertext)，即「扩展型⽂本」，指的是 HTML 中可以有链向别的⽂本的超链接 (Hyperlink)。</p>
+<p>以上定义中 Hyper 有拓展的一层意思，互联网创始之初，人们就在思考如何更加方便的在互联网传输信息，最初这些信息都是以文本形式进行传输，随着互联网信息越积约多，就急需一种让文件之间互相关联起来的方式来提高信息查找效率，于是 HTML 这种在文本文件中可以指向别的文本的语言（Hypertext Markup Language 超文本标记语言）就诞生了，随后用户传输这种文本的协议也诞生了也就是 HTTP 协议。</p>
+<a id="more"></a>
+<h3 id="URL-和-HTTP-报文"><a href="#URL-和-HTTP-报文" class="headerlink" title="URL 和 HTTP 报文"></a>URL 和 HTTP 报文</h3><h4 id="URL-格式"><a href="#URL-格式" class="headerlink" title="URL 格式"></a>URL 格式</h4><p>三部分：协议类型、服务器地址（和端口号）、路径（Path）<br>组成结构：协议类型：//服务器地址[:端口号]路径<br>eg.：<a href="https://skyrin.cc/user?gender=male">https://skyrin.cc/user?gender=male</a></p>
+<h4 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h4><h5 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h5><p><img src="https://upload-images.jianshu.io/upload_images/3551539-981fa1867cd64b18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h5 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h5><p><img src="https://upload-images.jianshu.io/upload_images/3551539-8085215a6eea2a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="HTTP-的工作方式"><a href="#HTTP-的工作方式" class="headerlink" title="HTTP 的工作方式"></a>HTTP 的工作方式</h3><h4 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h4><p>用户在地址栏输入 URL -&gt; 回车 -&gt; 浏览器拼装 HTTP 报文并发送请求到服务器 -&gt; 服务器处理请求后发送响应报文给浏览器 -&gt; 浏览器解析响应报文并使用渲染引擎显示到界面</p>
+<h4 id="APP"><a href="#APP" class="headerlink" title="APP"></a>APP</h4><p>用户通过点击或其它交互触发联网需求 -&gt; APP 代码执行调用拼装 HTTP 报文并发送请求到服务器 -&gt; 服务器处理请求后发送响应报文给手机<br>-&gt; 手机接收到响应报文并做相应处理（接收到 HTML 页面加载显示到 WebView，接收到 Json 数据解析存储或展示到 UI 等）</p>
+<h3 id="请求方法（Request-Method）"><a href="#请求方法（Request-Method）" class="headerlink" title="请求方法（Request Method）"></a>请求方法（Request Method）</h3><h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><ul>
+<li>用于获取资源</li>
+<li>对服务器数据不进行修改</li>
+<li>不发送 Body</li>
+</ul>
+<p>请求头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /users/1 HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">cache-control: no-cache</span><br></pre></td></tr></table></figure>
+<p>对应的 Retrofit 代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GET</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(@Path(<span class="string">"id"</span>)</span> String id, @<span class="title">Query</span><span class="params">(<span class="string">"gender"</span>)</span> String gender)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><ul>
+<li>用于增加会修改资源</li>
+<li>发送给服务器的内容写在 Body 里面</li>
+</ul>
+<p>请求头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /users HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 13</span><br><span class="line"></span><br><span class="line">name=rengwuxian&amp;gender=male</span><br></pre></td></tr></table></figure>
+<p>对应的 Retrofit 代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="meta">@POST</span>(<span class="string">"/users"</span>)</span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">addUser</span><span class="params">(@Field(<span class="string">"name"</span>)</span> String name, @<span class="title">Field</span><span class="params">(<span class="string">"gender"</span>)</span> String</span></span><br><span class="line"><span class="function">gender)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><p>请求头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /users/1 HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 13</span><br><span class="line"></span><br><span class="line">gender=female</span><br></pre></td></tr></table></figure>
+<p>对应的 Retrofit 代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FormUrlEncoded</span></span><br><span class="line"><span class="meta">@PUT</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">updateGender</span><span class="params">(@Path(<span class="string">"id"</span>)</span> String id, @<span class="title">Field</span><span class="params">(<span class="string">"gender"</span>)</span> String</span></span><br><span class="line"><span class="function">gender)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p>请求头</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DELETE /users/1 HTTP/1.1</span><br><span class="line">Host: api.github.com</span><br></pre></td></tr></table></figure>
+<p>对应的 Retrofit 代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DELETE</span>(<span class="string">"/users/&#123;id&#125;"</span>)</span><br><span class="line"><span class="function">Call&lt;User&gt; <span class="title">getUser</span><span class="params">(@Path(<span class="string">"id"</span>)</span> String id, @<span class="title">Query</span><span class="params">(<span class="string">"gender"</span>)</span> String gender)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h4><ul>
+<li>和 GET 使用方法完全相同</li>
+<li>和 GET 唯一区别在于，返回的响应中没有 Body</li>
+<li>一般用于下载比较大的文件，从响应报文头获取文件大小等属性</li>
+</ul>
+<h3 id="状态码（Status-Code）"><a href="#状态码（Status-Code）" class="headerlink" title="状态码（Status Code）"></a>状态码（Status Code）</h3><p>状态码全部表现为三位数字，用于对应响应结果的类型描述（如「200 请求成功」 「404 内容未找到」），常见如下</p>
+<ul>
+<li>1xx：临时性消息；100（继续发送）、101（正在切换协议）。</li>
+<li>2xx：成功；200（OK）、201（创建成功）。</li>
+<li>3xx：重定向；301（永久移除）、302（暂时移动）、304（内容未改变）。</li>
+<li>4xx：客户端错误；400（客户端请求出错）、401（认证失败）、403（被禁止）、404（找不到内容）。</li>
+<li>5xx：服务器错误；500（服务器内部错误）、502（网关错误）。</li>
+</ul>
+<h3 id="首部（Header）"><a href="#首部（Header）" class="headerlink" title="首部（Header）"></a>首部（Header）</h3><p>作用：HTTP 消息的 metadata，也就是属性</p>
+<h4 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h4><p>目标主机。用于在目标服务器上定位子服务器。</p>
+<h4 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h4><p>指定 Body 的类型。主要分四类：</p>
+<h5 id="1-text-html"><a href="#1-text-html" class="headerlink" title="1. text/html"></a>1. text/html</h5><p>请求 Web 页面时返回数据的类型，Body 中返回 html 文本。格式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 853</span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<h5 id="2-x-www-form-urlencoded"><a href="#2-x-www-form-urlencoded" class="headerlink" title="2. x-www-form-urlencoded"></a>2. x-www-form-urlencoded</h5><p>Web ⻚面纯⽂本表单的提交⽅式。</p>
+<h5 id="3-multitype-form-data"><a href="#3-multitype-form-data" class="headerlink" title="3. multitype/form-data"></a>3. multitype/form-data</h5><p>Web ⻚面含有⼆进制⽂件时的提交方式。</p>
+<h5 id="4-application-json-image-jpeg-application-zip-…"><a href="#4-application-json-image-jpeg-application-zip-…" class="headerlink" title="4. application/json , image/jpeg , application/zip …"></a>4. application/json , image/jpeg , application/zip …</h5><p>单项内容（文本或⾮文本都可以），用于 Web Api 的响应或者 POST / PUT 的请求</p>
+<h4 id="Content-Length"><a href="#Content-Length" class="headerlink" title="Content-Length"></a>Content-Length</h4><p>指定 Body 的长度（字节）</p>
+<h4 id="Transfer-chunked-分块传输编码-Chunked-Transfer-Encoding"><a href="#Transfer-chunked-分块传输编码-Chunked-Transfer-Encoding" class="headerlink" title="Transfer:chunked(分块传输编码 Chunked Transfer Encoding)"></a>Transfer:chunked(分块传输编码 Chunked Transfer Encoding)</h4><p>用于当响应发起时，内容长度还没能确定的情况下。和 Content-Length 不同时使⽤。用途是尽早给<br>出响应，减少⽤用户等待。</p>
+<p>格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line"></span><br><span class="line">4</span><br><span class="line">Chun</span><br><span class="line">9</span><br><span class="line">ked Trans</span><br><span class="line">12</span><br><span class="line">fer Encoding</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<h4 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h4><p>指定重定向的目标 URL</p>
+<h4 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h4><p>用户代理标识，即谁实际发送和接受请求，例如手机浏览器、某个手机 APP。服务端可以根据它来判断返回界面的类型、样式等达到更好的用户体验，我们也可以用它在 PC Chrome 上调试预览手机页面，例如如下标识，可以让服务端返回手机样式的 HTML 页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_2 like Mac OS X) &gt; AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D257 &gt; MicroMessenger/6.0.1 NetType/WIFI</span><br></pre></td></tr></table></figure>
+<h4 id="Range-Accept-Range"><a href="#Range-Accept-Range" class="headerlink" title="Range / Accept-Range"></a>Range / Accept-Range</h4><p>按范围取数据</p>
+<p><code>Accept-Range: bytes</code> 响应报⽂文中出现，表示服务器器⽀支持按字节来取范围数据<br><code>Range: bytes=&lt;start&gt;-&lt;end&gt;</code> 请求报⽂文中出现，表示要取哪段数据<br><code>Content-Range:&lt;start&gt;-&lt;end&gt;/total</code> 响应报⽂文中出现，表示发送的是哪段数据</p>
+<p>作用：断点续传、多线程下载。</p>
+<h4 id="其他-Headers"><a href="#其他-Headers" class="headerlink" title="其他 Headers"></a>其他 Headers</h4><ul>
+<li>Accept: 客户端能接受的数据类型。如 text/html</li>
+<li>Accept-Charset: 客户端接受的字符集。如 utf-8</li>
+<li>Accept-Encoding: 客户端接受的压缩编码类型。如 gzip</li>
+<li>Content-Encoding：压缩类型。如 gzip</li>
+</ul>
+<h4 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h4><p>作用：在客户端或中间⽹络节点缓存数据，降低从服务器取数据的频率，以提⾼网络性能。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/05/win10-install-mysql8011/" rel="next" title="Win10 系统下卸载安装 MySQL 8.0.11">
+                <i class="fa fa-chevron-left"></i> Win10 系统下卸载安装 MySQL 8.0.11
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/05/use-nginx-re-proxy-tomcat/" rel="prev" title="使用 Nginx 反向代理 Tomcat">
+                使用 Nginx 反向代理 Tomcat <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="skyrin">
+            
+              <p class="site-author-name" itemprop="name">skyrin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/realskyrin" title="GitHub &rarr; https://github.com/realskyrin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cnskyrin@163.com" title="E-Mail &rarr; mailto:cnskyrin@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/32f1afa17c58" title="简书 &rarr; https://www.jianshu.com/u/32f1afa17c58" rel="noopener" target="_blank"><i class="fa fa-fw fa-envira"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/playlist?id=131265554" title="音乐 &rarr; https://music.163.com/playlist?id=131265554" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>音乐</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-的定义"><span class="nav-text">HTTP 的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL-和-HTTP-报文"><span class="nav-text">URL 和 HTTP 报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-格式"><span class="nav-text">URL 格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#报文格式"><span class="nav-text">报文格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求报文"><span class="nav-text">请求报文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应报文"><span class="nav-text">响应报文</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-的工作方式"><span class="nav-text">HTTP 的工作方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器"><span class="nav-text">浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APP"><span class="nav-text">APP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求方法（Request-Method）"><span class="nav-text">请求方法（Request Method）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET"><span class="nav-text">GET</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST"><span class="nav-text">POST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PUT"><span class="nav-text">PUT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DELETE"><span class="nav-text">DELETE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HEAD"><span class="nav-text">HEAD</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态码（Status-Code）"><span class="nav-text">状态码（Status Code）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首部（Header）"><span class="nav-text">首部（Header）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Host"><span class="nav-text">Host</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Type"><span class="nav-text">Content-Type</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-text-html"><span class="nav-text">1. text/html</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-x-www-form-urlencoded"><span class="nav-text">2. x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-multitype-form-data"><span class="nav-text">3. multitype/form-data</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-application-json-image-jpeg-application-zip-…"><span class="nav-text">4. application/json , image/jpeg , application/zip …</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Length"><span class="nav-text">Content-Length</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transfer-chunked-分块传输编码-Chunked-Transfer-Encoding"><span class="nav-text">Transfer:chunked(分块传输编码 Chunked Transfer Encoding)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Location"><span class="nav-text">Location</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#User-Agent"><span class="nav-text">User-Agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range-Accept-Range"><span class="nav-text">Range / Accept-Range</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他-Headers"><span class="nav-text">其他 Headers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cache"><span class="nav-text">Cache</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">skyrin</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a>&nbsp&nbsp|&nbsp&nbspPowered by <a target="_blank" href="https://hexo.io" style="font-weight:bold">Hexo</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'giaWc0iiaMAvjYHn9z3woJO4-gzGzoHsz',
+        appKey: 'H8wOUnSboy1Q1aVUSiDgSjy8',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

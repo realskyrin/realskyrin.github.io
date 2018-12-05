@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/skyrin-180.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/skyrin-32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/skyrin-16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'Y45INZ7E93',
+      apiKey: 'e044360fd0bdb0a9e0a36f2f714e0054',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="概述GitPage 是个什么东西？它和 GitHub 是什么关系？Hexo 又是什么？它和 GitPage 又是什么关系？为什么我要用 Hexo + GitPage 搭建博客？这些问题在我不了解 GitPage 之前都是一堆问号，想必大多数小白都和我一样很懵，现在网上关于搭建博客的教程一大堆，但是当初我在搭建的时候照着步骤一步一步搞感觉很不爽，直到最后博客搭完了才明白以上几个问题，所以这里我想先给">
+<meta name="keywords" content="Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Hexo &amp; GitPage 搭建博客">
+<meta property="og:url" content="https://skyrin.cc/2018/03/06/build-hexo-blog-30minute/index.html">
+<meta property="og:site_name" content="Skyrin&#39;s Blog">
+<meta property="og:description" content="概述GitPage 是个什么东西？它和 GitHub 是什么关系？Hexo 又是什么？它和 GitPage 又是什么关系？为什么我要用 Hexo + GitPage 搭建博客？这些问题在我不了解 GitPage 之前都是一堆问号，想必大多数小白都和我一样很懵，现在网上关于搭建博客的教程一大堆，但是当初我在搭建的时候照着步骤一步一步搞感觉很不爽，直到最后博客搭完了才明白以上几个问题，所以这里我想先给">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-35c462766a0150cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-8421766b5e655dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-dbd88d8a99462811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-6a35ef11586e9170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-02b2bc2c274e8cd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-d86e3f3472c4a56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-05T01:59:05.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Hexo &amp; GitPage 搭建博客">
+<meta name="twitter:description" content="概述GitPage 是个什么东西？它和 GitHub 是什么关系？Hexo 又是什么？它和 GitPage 又是什么关系？为什么我要用 Hexo + GitPage 搭建博客？这些问题在我不了解 GitPage 之前都是一堆问号，想必大多数小白都和我一样很懵，现在网上关于搭建博客的教程一大堆，但是当初我在搭建的时候照着步骤一步一步搞感觉很不爽，直到最后博客搭完了才明白以上几个问题，所以这里我想先给">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3551539-35c462766a0150cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="https://skyrin.cc/2018/03/06/build-hexo-blog-30minute/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用 Hexo & GitPage 搭建博客 | Skyrin's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyrin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://skyrin.cc/2018/03/06/build-hexo-blog-30minute/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="skyrin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyrin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用 Hexo & GitPage 搭建博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-06 09:06:44" itemprop="dateCreated datePublished" datetime="2018-03-06T09:06:44+08:00">2018-03-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-05 09:59:05" itemprop="dateModified" datetime="2018-12-05T09:59:05+08:00">2018-12-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/06/build-hexo-blog-30minute/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/06/build-hexo-blog-30minute/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>GitPage 是个什么东西？它和 GitHub 是什么关系？Hexo 又是什么？它和 GitPage 又是什么关系？为什么我要用 Hexo + GitPage 搭建博客？这些问题在我不了解 GitPage 之前都是一堆问号，想必大多数小白都和我一样很懵，现在网上关于搭建博客的教程一大堆，但是当初我在搭建的时候照着步骤一步一步搞感觉很不爽，直到最后博客搭完了才明白以上几个问题，所以这里我想先给大家回答一下上面几个问题，然后再逐步教大家使用 Hexo + GitPage 搭建属于你自己的博客。</p>
+<a id="more"></a>
+<h3 id="Hexo-简述"><a href="#Hexo-简述" class="headerlink" title="Hexo 简述"></a>Hexo 简述</h3><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，使用 Node.js 渲染页面，通常在很短的时间内即可利用靓丽的主题生成静态网页。同时 Hexo 也拥有强大的插件系统，支持 Jade, CoffeeScript 等诸多强大插件。</p>
+<h3 id="GitPage-简述"><a href="#GitPage-简述" class="headerlink" title="GitPage 简述"></a>GitPage 简述</h3><p>GitPage 与 GitHub 同属一个组织 GitHub Inc.，可以说 GitPage 出生的目的就是为了服务于 GitHub，我们知道 GitHub 上有众多非常优秀的开源项目，有些项目比较大，涉及到框架级别的项目它的说明文档就不是写几个 Readme 就能讲清楚的事了，所以这种情况下这些项目的维护者就急需一个站点来详尽展示此项目的功能、用法、及更新动态等等，比如大名鼎鼎的 <a href="http://reactivex.io" target="_blank" rel="noopener">ReactiveX</a> 的 GitPage 地址为 <a href="http://reactivex.github.io" target="_blank" rel="noopener">http://reactivex.github.io</a> 你在浏览器访问这个 URL 会自动跳转到 <code>reactivex.io</code>，这是其自定义域名（这是 GitPage 又一个很赞的功能，后面详细介绍），那么问题来了，程序猿们虽然看起来比较万能，但实际上并不是万能的，所以可能一些研究底层架构，程序开发很 NB 的程序员却真的是 HTML、CSS、Linux 小白，毕竟术业有专攻啊，所以这时候让他们自己去搭个站点就真的头疼了，毕竟是有时间成本的。</p>
+<p>于是 GitPage 诞生了，GitPage 允许你将你的博客创建为一个 GitHub Project，通过 <code>your-account.github.io</code> 这样的特殊项目名称与 GitPage 进行关联，然后，你只需要像平时一样 commit 你的博文到 GitHub 上就 OK 了，GitPage 会自动将你的更新部署出去，完全不需要考虑服务器、数据库、运维、甚至 HTML 等这些发布站点的必备技能，所以 GitPage 诞生的目的就是要把你的专注点拉回到写文章上而不需要花时间去考虑其它事情。</p>
+<p>这时你可能会注意到，我要如何去个性化我的站点？我真的仅仅需要 commit 一个文件上去就 OK 吗？当然不是的，想要个性化自己的站点还需要一个博客框架以及一款可自由配置的主题，接着 Hexo 闪亮登场[手动撒花]，Hexo 简述在上面，详细介绍请看 <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo 中文官网</a>，Hexo 很好的支持了 Markdown 语法的解析，炫酷的博客主题也很多，大家可以去 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">Hexo Themes</a> 慢慢挑选，我目前用的是 <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">NexT</a> 这个主题。</p>
+<p>OK ，接下来正式开始着手搭建吧。</p>
+<h3 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h3><h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ul>
+<li>安装 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>（我们要用它来安装博客框架、渲染主题等）。</li>
+<li>安装 <a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>（我们要用它来下载主题、提交、部署文章等）。</li>
+</ul>
+<h4 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h4><p>以上两个必备程序安装完成后，只需要用 git-bash 执行如下命令即可安装 Hexo。</p>
+<pre><code>$ npm install -g hexo-cli
+</code></pre><h4 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h4><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹 <code>&lt;folder&gt;</code> 中新建所需要的文件。</p>
+<pre><code>$ hexo init &lt;folder&gt;
+$ cd &lt;folder&gt;
+$ npm install
+</code></pre><p>新建完成后，指定文件夹 <code>&lt;folder&gt;</code> 的目录如下：</p>
+<pre><code>.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:left">文件/文件夹</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">_config.yml</td>
+<td style="text-align:left">网站的<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">配置</a>文件</td>
+</tr>
+<tr>
+<td style="text-align:left">package.json</td>
+<td style="text-align:left">应用程序的信息</td>
+</tr>
+<tr>
+<td style="text-align:left">scaffolds</td>
+<td style="text-align:left"><a href="https://hexo.io/zh-cn/docs/templates.html" target="_blank" rel="noopener">模版</a>文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件</td>
+</tr>
+<tr>
+<td style="text-align:left">source</td>
+<td style="text-align:left"><a href="https://hexo.io/zh-cn/docs/asset-folders.html" target="_blank" rel="noopener">资源文件夹</a>是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去</td>
+</tr>
+<tr>
+<td style="text-align:left">themes</td>
+<td style="text-align:left"><a href="https://hexo.io/zh-cn/docs/themes.html" target="_blank" rel="noopener">主题</a>文件夹。Hexo 会根据主题来生成静态页面</td>
+</tr>
+</tbody>
+</table>
+<h4 id="创建主题"><a href="#创建主题" class="headerlink" title="创建主题"></a>创建主题</h4><p>使用如下命令下载主题：</p>
+<pre><code>$ cd themes/
+$ git init 
+$ git clone https://github.com/iissnan/hexo-theme-next.git
+</code></pre><p>你也可以下载多个主题，然后修改 _config.yml（注意是网站的配置文件而非主题的配置文件） 内的 theme 设定，即可切换主题。一个主题通常有以下结构：</p>
+<pre><code>.
+├── _config.yml
+├── languages
+├── layout
+├── scripts
+└── source
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:left">文件/文件夹</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">_config.yml</td>
+<td style="text-align:left">主题的配置文件</td>
+</tr>
+<tr>
+<td style="text-align:left">languages</td>
+<td style="text-align:left">语言文件夹，请参见<a href="https://hexo.io/zh-cn/docs/internationalization.html" target="_blank" rel="noopener">国际化 (i18n)</a></td>
+</tr>
+<tr>
+<td style="text-align:left">layout</td>
+<td style="text-align:left">布局文件夹。用于存放主题的模板文件，决定了网站内容的呈现方式，您可参考<a href="https://hexo.io/zh-cn/docs/templates.html" target="_blank" rel="noopener">模板</a>以获得更多信息</td>
+</tr>
+<tr>
+<td style="text-align:left">scripts</td>
+<td style="text-align:left">脚本文件夹。在启动时，Hexo 会载入此文件夹内的 JavaScript 文件，参见<a href="https://hexo.io/zh-cn/docs/plugins.html" target="_blank" rel="noopener">插件</a>获取更多信息</td>
+</tr>
+<tr>
+<td style="text-align:left">source</td>
+<td style="text-align:left">资源文件夹，除了模板以外的 Asset，例如 CSS、JavaScript 文件等，都应该放在这个文件夹中。文件或文件夹开头名称为 _（下划线线）或隐藏的文件会被忽略</td>
+</tr>
+</tbody>
+</table>
+<h4 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h4><p>每个主题的配置文件 <code>_config.yml</code> 内容可能都不太一样，但是大致都包括了菜单栏、侧边栏、站点图标、头像等常用项，如下是 NexT 主题的部分配置细节展示，其它主题可以去主题官网详细了解。</p>
+<p>站点图标设置：</p>
+<pre><code>favicon:
+  small: /images/skyrin-16.png
+  medium: /images/skyrin-32.png
+  apple_touch_icon: /images/skyrin-180.png
+  safari_pinned_tab: /images/logo.svg
+  #android_manifest: /images/manifest.json
+  #ms_browserconfig: /images/browserconfig.xml
+</code></pre><p>页脚设置：</p>
+<pre><code>footer:
+  # Specify the date when the site was setup.
+  # If not defined, current year will be used.
+  #since: 2015
+
+  # Icon between year and copyright info.
+  icon: heart
+
+  # If not defined, will be used `author` from Hexo main config.
+  copyright:
+  # -------------------------------------------------------------
+  # Hexo link (Powered by Hexo).
+  powered: false
+
+  theme:
+    # Theme &amp; scheme info link (Theme - NexT.scheme).
+    enable: false
+    # Version info of NexT after scheme info (vX.X.X).
+    version: true
+  custom_text : Hosted by &lt;a target=&quot;_blank&quot; href=&quot;https://pages.coding.me&quot; style=&quot;font-weight:bold&quot;&gt;Coding Pages&lt;/a&gt;
+</code></pre><p>菜单设置：</p>
+<pre><code>menu:
+  home: / || home
+  #about: /about/ || user
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+  #schedule: /schedule/ || calendar
+  #sitemap: /sitemap.xml || sitemap
+  #commonweal: /404/ || heartbeat
+
+# Enable/Disable menu icons.
+menu_icons:
+  enable: true
+</code></pre><p>方案设置：</p>
+<pre><code>#scheme: Muse
+scheme: Mist
+#scheme: Pisces
+#scheme: Gemini
+</code></pre><p>社交：</p>
+<pre><code>social:
+  GitHub: https://github.com/ || github   #‘||’右侧为小图标名称，图标来源 https://fontawesome.com/，可自定义
+  E-Mail: mailto:cnskyrin@163.com || envelope
+  简书: https://www.jianshu.com/u/32f1afa17c58 || 
+  音乐: http://www.xiami.com/collect/360454952 || music
+  #Twitter: https://twitter.com/yourname || twitter
+  #FB Page: https://www.facebook.com/yourname || facebook
+  #VK Group: https://vk.com/yourname || vk
+  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
+  #YouTube: https://youtube.com/yourname || youtube
+  #Instagram: https://instagram.com/yourname || instagram
+  #Skype: skype:yourname?call|chat || skype
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: false
+</code></pre><p>侧栏头像：</p>
+<pre><code># Sidebar Avatar
+# in theme directory(source/images): /images/avatar.gif
+# in site  directory(source/uploads): /uploads/avatar.gif
+avatar: /images/avatar.gif
+</code></pre><h3 id="测试及部署站点"><a href="#测试及部署站点" class="headerlink" title="测试及部署站点"></a>测试及部署站点</h3><p>如果在<code>/themes</code>目录下包含多个主题样式的话，请先在网站配置文件<code>_config.yml</code>中指定你需要使用样式</p>
+<pre><code>theme: next # 参数必须与 /themes 目录下主题目录名相同
+</code></pre><p>在站点根目录打开命令行，执行<code>hexo s</code>，如下图所示状态</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-35c462766a0150cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>在浏览器中访问<code>http://localhost:4000/</code>即可预览网站全貌，在命令行 Ctrl+C 即可停止预览。</p>
+<p>如果样式符合预期的话即可部署到 GitHub 或者其它提供 Page 托管的服务站点了，下面将以部署到 GitHub 为例进行操作：</p>
+<p>1、安装 deploy git 插件实现一键自动部署。</p>
+<pre><code>npm install hexo-deployer-git --save
+</code></pre><p>2、在 GitHub 创建一个名为<code>&lt;username&gt;.github.io.git</code>的仓库。<br>3、在主题配置文件<code>_config.yml</code>中修改仓库地址。</p>
+<pre><code>deploy:
+  type: git
+  repo: 
+    github: git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git
+</code></pre><p>4、执行<code>hexo d</code>即可发布到 GitHub 仓库。<br>5、新增或修改主题后请执行 <code>hexo clean &amp;&amp; hexo d</code> 清理缓存文件并部署</p>
+<p>注：这里使用 ssh 协议而非 http，所以请先确保您已经在 GitHub 添加了公钥。</p>
+<h3 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h3><p>1、首先你需要去域名注册商（阿里云腾讯云等）买一个域名<br>2、在根站点下<code>source</code>目录中添加<code>CNAME</code>文件，文件内容为您购买的域名<code>xxx.com</code>，不要添加<code>www</code>、<code>mail</code>等子域例如<code>www.xxx.com</code>或<code>mail.xxx.com</code><br>3、前往域名控制台解析此域名到<code>github.io</code>，根据 gitpage 的自定义域名要求，他们建议解析到<code>github.io</code>的数字 ip 地址，即<code>151.101.129.147</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-8421766b5e655dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>在控制台设置域名解析，添加 A 记录指向 <code>151.101.129.147</code> 即可</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-dbd88d8a99462811.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>注意上图的解析线路选项，我是同时将站点托管在 GitHub 和 Coding.net 的，所以会有两条解析记录，本来打算用 Coding 作为国内线路 GitHub 作为国外线路，但最后经过测试境内 GitHub 的 ping 值虽然高于 Coding ，但访问速度还是比 Coding 快，所以我将 Coding 的解析停掉了；这也许是我的网络情况导致，大家可以随便试试自由分配解析线路择优选择不必参照我的来。</p>
+<p>4、命令行执行<code>hexo d</code>发布站点到 GitHub 库，这时在 Git 库应该就能看到 CNAME 文件，至此自定义域名设置完毕，现在使用<code>xxx.com</code>即可访问站点</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-6a35ef11586e9170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><h4 id="评论插件"><a href="#评论插件" class="headerlink" title="评论插件"></a>评论插件</h4><p><a href="https://livere.com/" target="_blank" rel="noopener">来必力(LiveRe)</a>，国内众多评论系统由于各种原因纷纷停服，这个评论系统是韩国的，在国内也有中文官网 <a href="http://www.laibili.com.cn/" target="_blank" rel="noopener">http://www.laibili.com.cn/</a> ，详细介绍请看 <a href="https://livere.com/introduce" target="_blank" rel="noopener">livere introduce</a>，这个系统的集成也很简单速度还算可以、支持后台评论管理，在如今国内没有选择的情况下也算是个不错的选择。</p>
+<p>如果你是 NexT5.0+ 主题的话，直接在主题的配置文件中找到 <code>livere_uid</code> 项填入自己申请的来必力 uid 即可自动激活此插件，uid 申请只需注册账号，然后在 <a href="https://livere.com/apply" target="_blank" rel="noopener">apply 页面</a>选择版本进行设置，完成后在如下页面就能看到 uid，一般网站可以直接将这段代码块插入页面即可生效（效果见页底）。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-02b2bc2c274e8cd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h4 id="分享插件"><a href="#分享插件" class="headerlink" title="分享插件"></a>分享插件</h4><p>我的博客用的是<a href="http://share.baidu.com/" target="_blank" rel="noopener">百度分享</a>，无需注册，如果你需要更多自定义设置就去要登陆官网去仔细设置了，主要样式有如下两种：</p>
+<p>button 样式如下，就是我当前使用的（效果见页底）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bdsharebuttonbox"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_tsina"</span> <span class="attr">data-cmd</span>=<span class="string">"tsina"</span> <span class="attr">title</span>=<span class="string">"分享到新浪微博"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_douban"</span> <span class="attr">data-cmd</span>=<span class="string">"douban"</span> <span class="attr">title</span>=<span class="string">"分享到豆瓣网"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_sqq"</span> <span class="attr">data-cmd</span>=<span class="string">"sqq"</span> <span class="attr">title</span>=<span class="string">"分享到QQ好友"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_qzone"</span> <span class="attr">data-cmd</span>=<span class="string">"qzone"</span> <span class="attr">title</span>=<span class="string">"分享到QQ空间"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_weixin"</span> <span class="attr">data-cmd</span>=<span class="string">"weixin"</span> <span class="attr">title</span>=<span class="string">"分享到微信"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_tieba"</span> <span class="attr">data-cmd</span>=<span class="string">"tieba"</span> <span class="attr">title</span>=<span class="string">"分享到百度贴吧"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_twi"</span> <span class="attr">data-cmd</span>=<span class="string">"twi"</span> <span class="attr">title</span>=<span class="string">"分享到Twitter"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_fbook"</span> <span class="attr">data-cmd</span>=<span class="string">"fbook"</span> <span class="attr">title</span>=<span class="string">"分享到Facebook"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_more"</span> <span class="attr">data-cmd</span>=<span class="string">"more"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"bds_count"</span> <span class="attr">data-cmd</span>=<span class="string">"count"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="built_in">window</span>._bd_share_config = &#123;</span></span><br><span class="line"><span class="javascript">    <span class="string">"common"</span>: &#123;</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdText"</span>: <span class="string">""</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdMini"</span>: <span class="string">"2"</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdMiniList"</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdPic"</span>: <span class="string">""</span></span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="javascript">    <span class="string">"share"</span>: &#123;</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdSize"</span>: <span class="string">"16"</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdStyle"</span>: <span class="string">"0"</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>slide 样式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bdsharebuttonbox"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_tsina"</span> <span class="attr">data-cmd</span>=<span class="string">"tsina"</span> <span class="attr">title</span>=<span class="string">"分享到新浪微博"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_douban"</span> <span class="attr">data-cmd</span>=<span class="string">"douban"</span> <span class="attr">title</span>=<span class="string">"分享到豆瓣网"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_sqq"</span> <span class="attr">data-cmd</span>=<span class="string">"sqq"</span> <span class="attr">title</span>=<span class="string">"分享到QQ好友"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_qzone"</span> <span class="attr">data-cmd</span>=<span class="string">"qzone"</span> <span class="attr">title</span>=<span class="string">"分享到QQ空间"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_weixin"</span> <span class="attr">data-cmd</span>=<span class="string">"weixin"</span> <span class="attr">title</span>=<span class="string">"分享到微信"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_tieba"</span> <span class="attr">data-cmd</span>=<span class="string">"tieba"</span> <span class="attr">title</span>=<span class="string">"分享到百度贴吧"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_twi"</span> <span class="attr">data-cmd</span>=<span class="string">"twi"</span> <span class="attr">title</span>=<span class="string">"分享到Twitter"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_fbook"</span> <span class="attr">data-cmd</span>=<span class="string">"fbook"</span> <span class="attr">title</span>=<span class="string">"分享到Facebook"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">class</span>=<span class="string">"bds_more"</span> <span class="attr">data-cmd</span>=<span class="string">"more"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"bds_count"</span> <span class="attr">data-cmd</span>=<span class="string">"count"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="built_in">window</span>._bd_share_config = &#123;</span></span><br><span class="line"><span class="javascript">    <span class="string">"common"</span>: &#123;</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdText"</span>: <span class="string">""</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdMini"</span>: <span class="string">"1"</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdMiniList"</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdPic"</span>: <span class="string">""</span></span></span><br><span class="line"><span class="undefined">    &#125;,</span></span><br><span class="line"><span class="javascript">    <span class="string">"slide"</span>: &#123;</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdImg"</span>: <span class="string">"5"</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdPos"</span>: <span class="string">"left"</span>,</span></span><br><span class="line"><span class="javascript">      <span class="string">"bdTop"</span>: <span class="string">"100"</span></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="文章字数、阅读时长统计"><a href="#文章字数、阅读时长统计" class="headerlink" title="文章字数、阅读时长统计"></a>文章字数、阅读时长统计</h4><p>NexT5.0+ 主题内置了统计全站字数、单篇文章字数、阅读时长的插件，该插件开源地址点<a href="https://github.com/willin/hexo-wordcount" target="_blank" rel="noopener">这里</a>，要启用此功能只需在主题配置文件 <code>_config.yml</code> 中如下部分开启即可。</p>
+<pre><code># Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
+  totalcount: false
+  separated_meta: true
+</code></pre><p>注意，如果出现统计字数或时间没有出现的话，检查网站的 <code>package.json</code> 文件查看是否安装了 <code>hexo-wordcount</code> 插件。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-d86e3f3472c4a56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>没有安装的话用 npm 如下安装就行了。</p>
+<pre><code>npm install hexo-wordcount --save
+</code></pre><p>Ok，以上就是本文全部内容，有任何问题欢迎下方留言。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Blog/" rel="tag"># Blog</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/07/linux-rwx-group/" rel="next" title="Linux 权限机制">
+                <i class="fa fa-chevron-left"></i> Linux 权限机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/13/build-git-server/" rel="prev" title="搭建 Git 服务器教程">
+                搭建 Git 服务器教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="skyrin">
+            
+              <p class="site-author-name" itemprop="name">skyrin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/realskyrin" title="GitHub &rarr; https://github.com/realskyrin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cnskyrin@163.com" title="E-Mail &rarr; mailto:cnskyrin@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/32f1afa17c58" title="简书 &rarr; https://www.jianshu.com/u/32f1afa17c58" rel="noopener" target="_blank"><i class="fa fa-fw fa-envira"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/playlist?id=131265554" title="音乐 &rarr; https://music.163.com/playlist?id=131265554" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>音乐</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-简述"><span class="nav-text">Hexo 简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitPage-简述"><span class="nav-text">GitPage 简述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建步骤"><span class="nav-text">搭建步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境准备"><span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装-Hexo"><span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建站"><span class="nav-text">建站</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建主题"><span class="nav-text">创建主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主题配置"><span class="nav-text">主题配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试及部署站点"><span class="nav-text">测试及部署站点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义域名"><span class="nav-text">自定义域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件"><span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#评论插件"><span class="nav-text">评论插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分享插件"><span class="nav-text">分享插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文章字数、阅读时长统计"><span class="nav-text">文章字数、阅读时长统计</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">skyrin</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a>&nbsp&nbsp|&nbsp&nbspPowered by <a target="_blank" href="https://hexo.io" style="font-weight:bold">Hexo</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'giaWc0iiaMAvjYHn9z3woJO4-gzGzoHsz',
+        appKey: 'H8wOUnSboy1Q1aVUSiDgSjy8',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

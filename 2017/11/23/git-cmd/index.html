@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/skyrin-180.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/skyrin-32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/skyrin-16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'Y45INZ7E93',
+      apiKey: 'e044360fd0bdb0a9e0a36f2f714e0054',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="初始化一个本地仓库git init 将文件从工作区添加到暂存区git add 取消暂存 filegit reset HEAD &amp;lt;file&amp;gt;">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 常用命令">
+<meta property="og:url" content="https://skyrin.cc/2017/11/23/git-cmd/index.html">
+<meta property="og:site_name" content="Skyrin&#39;s Blog">
+<meta property="og:description" content="初始化一个本地仓库git init 将文件从工作区添加到暂存区git add 取消暂存 filegit reset HEAD &amp;lt;file&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-801d1034fe730dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-05T01:59:05.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git 常用命令">
+<meta name="twitter:description" content="初始化一个本地仓库git init 将文件从工作区添加到暂存区git add 取消暂存 filegit reset HEAD &amp;lt;file&amp;gt;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3551539-801d1034fe730dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="https://skyrin.cc/2017/11/23/git-cmd/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Git 常用命令 | Skyrin's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyrin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://skyrin.cc/2017/11/23/git-cmd/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="skyrin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyrin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git 常用命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-23 11:59:32" itemprop="dateCreated datePublished" datetime="2017-11-23T11:59:32+08:00">2017-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-05 09:59:05" itemprop="dateModified" datetime="2018-12-05T09:59:05+08:00">2018-12-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/23/git-cmd/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/11/23/git-cmd/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="初始化一个本地仓库"><a href="#初始化一个本地仓库" class="headerlink" title="初始化一个本地仓库"></a>初始化一个本地仓库</h4><pre><code>git init
+</code></pre><h4 id="将文件从工作区添加到暂存区"><a href="#将文件从工作区添加到暂存区" class="headerlink" title="将文件从工作区添加到暂存区"></a>将文件从工作区添加到暂存区</h4><pre><code>git add
+</code></pre><h4 id="取消暂存-file"><a href="#取消暂存-file" class="headerlink" title="取消暂存 file"></a>取消暂存 file</h4><pre><code>git reset HEAD &lt;file&gt;
+</code></pre><a id="more"></a>
+<h4 id="生成-rsa-格式-ssh-公私钥"><a href="#生成-rsa-格式-ssh-公私钥" class="headerlink" title="生成 rsa 格式 ssh 公私钥"></a>生成 rsa 格式 ssh 公私钥</h4><pre><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
+</code></pre><h4 id="生成-rsa-格式-ssh-公私钥并重命名"><a href="#生成-rsa-格式-ssh-公私钥并重命名" class="headerlink" title="生成 rsa 格式 ssh 公私钥并重命名"></a>生成 rsa 格式 ssh 公私钥并重命名</h4><pre><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot; -f ~/.ssh/custom-name
+</code></pre><h4 id="测试是否成功关联到远程仓库"><a href="#测试是否成功关联到远程仓库" class="headerlink" title="测试是否成功关联到远程仓库"></a>测试是否成功关联到远程仓库</h4><pre><code>ssh -T git@gitee.com
+</code></pre><h4 id="关联本地仓库到远程仓库-url"><a href="#关联本地仓库到远程仓库-url" class="headerlink" title="关联本地仓库到远程仓库 url"></a>关联本地仓库到远程仓库 url</h4><pre><code>git remote add origin url
+</code></pre><h4 id="显示远程仓库-url"><a href="#显示远程仓库-url" class="headerlink" title="显示远程仓库 url"></a>显示远程仓库 url</h4><pre><code>git remote -v
+</code></pre><h4 id="将文件从暂存区取出并保存到仓库"><a href="#将文件从暂存区取出并保存到仓库" class="headerlink" title="将文件从暂存区取出并保存到仓库"></a>将文件从暂存区取出并保存到仓库</h4><pre><code>git commit
+</code></pre><h4 id="将文件从本地仓库推送到远程仓库"><a href="#将文件从本地仓库推送到远程仓库" class="headerlink" title="将文件从本地仓库推送到远程仓库"></a>将文件从本地仓库推送到远程仓库</h4><pre><code>git push
+
+-u (--set-upstream): 对于每个最新或成功推送的分支，添加上游（跟踪）引用，用于无参数的 git-pull 和其他命令
+</code></pre><h4 id="查看仓库目前状态"><a href="#查看仓库目前状态" class="headerlink" title="查看仓库目前状态"></a>查看仓库目前状态</h4><pre><code>git status
+</code></pre><h4 id="显示文件两个版本之间的差异，输出内容与-git-log-p-相同"><a href="#显示文件两个版本之间的差异，输出内容与-git-log-p-相同" class="headerlink" title="显示文件两个版本之间的差异，输出内容与 git log -p 相同"></a>显示文件两个版本之间的差异，输出内容与 git log -p 相同</h4><pre><code>git diff
+</code></pre><h4 id="显示所有-commit-内容"><a href="#显示所有-commit-内容" class="headerlink" title="显示所有 commit 内容"></a>显示所有 commit 内容</h4><pre><code>git log
+
+-- oneline ： 一个 commit 显示一行内容为 SHA+TITLE
+-- stat ： 查看哪些文件被修改以及添加/删除了多少行代码
+- p(--patch) ： 显示对文件作出的实际更改
+- w ： git log -p -w 将显示补丁信息，但是不会突出显示仅更改了空格的行
+</code></pre><h4 id="将仅显示一个-commit-内容"><a href="#将仅显示一个-commit-内容" class="headerlink" title="将仅显示一个 commit 内容"></a>将仅显示一个 commit 内容</h4><pre><code>git show
+</code></pre><h4 id="合并与衍合"><a href="#合并与衍合" class="headerlink" title="合并与衍合"></a>合并与<a href="https://git-scm.com/book/zh/v2/%E9%99%84%E5%BD%95-C%3A-Git-%E5%91%BD%E4%BB%A4-%E8%A1%A5%E4%B8%81" target="_blank" rel="noopener">衍合</a></h4><pre><code>git merge &lt;branch&gt;    #合并指定分支到当前分支
+git rebase &lt;branch&gt;   #衍合指定分支到当前分支
+</code></pre><h4 id="强制覆盖本地内容"><a href="#强制覆盖本地内容" class="headerlink" title="强制覆盖本地内容"></a>强制覆盖本地内容</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch --all  </span><br><span class="line">git reset --hard origin/master </span><br><span class="line">git pull origin master</span><br></pre></td></tr></table></figure>
+<h4 id="gitignore-通配规则"><a href="#gitignore-通配规则" class="headerlink" title=".gitignore 通配规则"></a>.gitignore 通配规则</h4><p>.gitignore 文件用来告诉 git 不应跟踪的文件。该文件应该与 .git 目录（默认隐藏）同级。</p>
+<ul>
+<li>空白行作为空格</li>
+<li># ： 将行标记为注释</li>
+<li>* ： 与 0 个或多个字符匹配</li>
+<li>? ： 与 1 个字符匹配</li>
+<li>[abc] ： 与 a、b 或 c 匹配</li>
+<li><p>** ： 与嵌套目录匹配 - a/**/z 与以下项匹配：</p>
+<p>  a/z<br>  a/b/z<br>  a/b/c/z</p>
+</li>
+</ul>
+<h4 id="其它常见问题"><a href="#其它常见问题" class="headerlink" title="其它常见问题"></a>其它常见问题</h4><p><a href="http://blog.csdn.net/lindexi_gd/article/details/52554159" target="_blank" rel="noopener">git无法pull仓库refusing to merge unrelated histories</a><br>solution: <code>git pull origin master --allow-unrelated-histories</code></p>
+<p>代码体积太大出现<code>fatal: early EOF</code>、<code>fatal: index-pack failed</code>等错误<br>solution: 在<code>*[git installed path]*/etc/gitconfig</code>(没有可手动创建)文件中添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[core]</span><br><span class="line">packedGitLimit = 512m </span><br><span class="line">packedGitWindowSize = 512m</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://segmentfault.com/a/1190000002497981" target="_blank" rel="noopener">参考</a></p>
+<h4 id="命令速查表"><a href="#命令速查表" class="headerlink" title="命令速查表"></a>命令速查表</h4><p><img src="https://upload-images.jianshu.io/upload_images/3551539-801d1034fe730dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/16/gradle-file-operation/" rel="next" title="Gradle 的文件操作">
+                <i class="fa fa-chevron-left"></i> Gradle 的文件操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/08/apache2-to-create-a-virtual-host/" rel="prev" title="Apache2 创建虚拟主机">
+                Apache2 创建虚拟主机 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="skyrin">
+            
+              <p class="site-author-name" itemprop="name">skyrin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/realskyrin" title="GitHub &rarr; https://github.com/realskyrin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cnskyrin@163.com" title="E-Mail &rarr; mailto:cnskyrin@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/32f1afa17c58" title="简书 &rarr; https://www.jianshu.com/u/32f1afa17c58" rel="noopener" target="_blank"><i class="fa fa-fw fa-envira"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/playlist?id=131265554" title="音乐 &rarr; https://music.163.com/playlist?id=131265554" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>音乐</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化一个本地仓库"><span class="nav-text">初始化一个本地仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将文件从工作区添加到暂存区"><span class="nav-text">将文件从工作区添加到暂存区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消暂存-file"><span class="nav-text">取消暂存 file</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成-rsa-格式-ssh-公私钥"><span class="nav-text">生成 rsa 格式 ssh 公私钥</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成-rsa-格式-ssh-公私钥并重命名"><span class="nav-text">生成 rsa 格式 ssh 公私钥并重命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试是否成功关联到远程仓库"><span class="nav-text">测试是否成功关联到远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关联本地仓库到远程仓库-url"><span class="nav-text">关联本地仓库到远程仓库 url</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示远程仓库-url"><span class="nav-text">显示远程仓库 url</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将文件从暂存区取出并保存到仓库"><span class="nav-text">将文件从暂存区取出并保存到仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将文件从本地仓库推送到远程仓库"><span class="nav-text">将文件从本地仓库推送到远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看仓库目前状态"><span class="nav-text">查看仓库目前状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示文件两个版本之间的差异，输出内容与-git-log-p-相同"><span class="nav-text">显示文件两个版本之间的差异，输出内容与 git log -p 相同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示所有-commit-内容"><span class="nav-text">显示所有 commit 内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将仅显示一个-commit-内容"><span class="nav-text">将仅显示一个 commit 内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并与衍合"><span class="nav-text">合并与衍合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强制覆盖本地内容"><span class="nav-text">强制覆盖本地内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitignore-通配规则"><span class="nav-text">.gitignore 通配规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它常见问题"><span class="nav-text">其它常见问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令速查表"><span class="nav-text">命令速查表</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">skyrin</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a>&nbsp&nbsp|&nbsp&nbspPowered by <a target="_blank" href="https://hexo.io" style="font-weight:bold">Hexo</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'giaWc0iiaMAvjYHn9z3woJO4-gzGzoHsz',
+        appKey: 'H8wOUnSboy1Q1aVUSiDgSjy8',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

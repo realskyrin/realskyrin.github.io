@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/skyrin-180.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/skyrin-32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/skyrin-16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'Y45INZ7E93',
+      apiKey: 'e044360fd0bdb0a9e0a36f2f714e0054',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多地同步的必要性这个必要性其实不用多说，用着用着你就自己能体会到，比如头天晚上在家里发布了一篇技术文章，第二天在公司 Coding 的过程中突然想到之前发的文某个地方有 Bug ，这时如果你的博客只搭在家里那台 PC 上的话就只能等到下班回家去改，或者在 Coding 时突然灵感迸发写出了连自己都佩服的神码想要急于分享出去时，就只能蛋疼的憋着回家写了，嗯，这可能就是最需要多地同步的场景了。">
+<meta name="keywords" content="Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何多端同步 Hexo 框架博客">
+<meta property="og:url" content="https://skyrin.cc/2018/05/06/sync-your-blog-multi-peer/index.html">
+<meta property="og:site_name" content="Skyrin&#39;s Blog">
+<meta property="og:description" content="多地同步的必要性这个必要性其实不用多说，用着用着你就自己能体会到，比如头天晚上在家里发布了一篇技术文章，第二天在公司 Coding 的过程中突然想到之前发的文某个地方有 Bug ，这时如果你的博客只搭在家里那台 PC 上的话就只能等到下班回家去改，或者在 Coding 时突然灵感迸发写出了连自己都佩服的神码想要急于分享出去时，就只能蛋疼的憋着回家写了，嗯，这可能就是最需要多地同步的场景了。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-ecae7fd1aeadf74e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-5653d6a77790a5d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-1c36aa3a56fe4406.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-fced769fe21056b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-cb06140b49a9a0df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-4df66bd9b4c563ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-86c786f7de7a1e7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-1ea77d2ae485e2eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-7afa4547bf283312.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-57302f5ba02bff6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-f0ffae3cc791ad2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3551539-f234f59f24e5fdf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-05T01:59:05.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何多端同步 Hexo 框架博客">
+<meta name="twitter:description" content="多地同步的必要性这个必要性其实不用多说，用着用着你就自己能体会到，比如头天晚上在家里发布了一篇技术文章，第二天在公司 Coding 的过程中突然想到之前发的文某个地方有 Bug ，这时如果你的博客只搭在家里那台 PC 上的话就只能等到下班回家去改，或者在 Coding 时突然灵感迸发写出了连自己都佩服的神码想要急于分享出去时，就只能蛋疼的憋着回家写了，嗯，这可能就是最需要多地同步的场景了。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3551539-ecae7fd1aeadf74e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="https://skyrin.cc/2018/05/06/sync-your-blog-multi-peer/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>如何多端同步 Hexo 框架博客 | Skyrin's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyrin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://skyrin.cc/2018/05/06/sync-your-blog-multi-peer/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="skyrin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyrin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何多端同步 Hexo 框架博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-06 21:29:11" itemprop="dateCreated datePublished" datetime="2018-05-06T21:29:11+08:00">2018-05-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-05 09:59:05" itemprop="dateModified" datetime="2018-12-05T09:59:05+08:00">2018-12-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/06/sync-your-blog-multi-peer/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/05/06/sync-your-blog-multi-peer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="多地同步的必要性"><a href="#多地同步的必要性" class="headerlink" title="多地同步的必要性"></a>多地同步的必要性</h3><p>这个必要性其实不用多说，用着用着你就自己能体会到，比如头天晚上在家里发布了一篇技术文章，第二天在公司 Coding 的过程中突然想到之前发的文某个地方有 Bug ，这时如果你的博客只搭在家里那台 PC 上的话就只能等到下班回家去改，或者在 Coding 时突然灵感迸发写出了连自己都佩服的神码想要急于分享出去时，就只能蛋疼的憋着回家写了，嗯，这可能就是最需要多地同步的场景了。</p>
+<a id="more"></a>
+<h3 id="使用-U-盘"><a href="#使用-U-盘" class="headerlink" title="使用 U 盘"></a>使用 U 盘</h3><p><img src="https://upload-images.jianshu.io/upload_images/3551539-ecae7fd1aeadf74e.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="使用-Git"><a href="#使用-Git" class="headerlink" title="使用 Git"></a>使用 Git</h3><p>嗯，这才是正确的操作姿势。<br><a href="http://skyrin.cc">我的博客</a>用的 Hexo 搭建的，所以接下来以此演示，其他使用 jekyll 或 wordpress 等框架搭建的博客同理可参考。</p>
+<h4 id="本地初始化一个-git-库存放整个站点"><a href="#本地初始化一个-git-库存放整个站点" class="headerlink" title="本地初始化一个 git 库存放整个站点"></a>本地初始化一个 git 库存放整个站点</h4><p>比如我的 Blog 就放在<code>D:\Pages\repos\Hexo-Blog</code>库下。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-5653d6a77790a5d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>然后<code>blog</code>目录就是整个站点的根目录了，其实我们发布出去的站点就是<code>public/</code>目录而已，其它的东西都是用来生成这个目录的必要文件。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-1c36aa3a56fe4406.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h4 id="处理多层-git-库嵌套的问题"><a href="#处理多层-git-库嵌套的问题" class="headerlink" title="处理多层 git 库嵌套的问题"></a>处理多层 git 库嵌套的问题</h4><p>由于站点主题是从 github 直接 pull 下来的，所以<code>blog/themes/your-theme/</code>应该也是一个 git 库，git 库不支持多层嵌套，但好像有个子 git 库的概念但是处理起来较麻烦，所以这里我的解决方式很简单粗暴 ———— 直接删除<code>blog/themes/your-theme/</code>库下的<code>.git</code>目录让它变成一个普通目录，这样就有一个不能直接同步更新主题的问题，但我感觉这并不是一个问题，因为主题的更新周期很长，非重大 Bug 或功能一般不会更新，而且主题和文章并不强关联，所以实在需要更新主题的新版本时可以先 pull 到别的目录然后 copy 过来。</p>
+<h4 id="关联到远程仓库"><a href="#关联到远程仓库" class="headerlink" title="关联到远程仓库"></a>关联到远程仓库</h4><p>这里可能有同学感到懵逼，因为我在<a href="http://skyrin.cc/2018/03/06/build-hexo-blog-30minute/">使用 Hexo &amp; GitPage 搭建博客</a>一文中为 Hexo 安装了 deploygit 插件用来部署文章，这个插件也是和 git 仓库关联的，这里再次关联一个远程仓库不就嵌套了吗？当然不会，因为这个插件是安装在本地的，可以直接使用 npm 安装，所以这个插件没必要提交到 git 仓库，因此默认生成的<code>.gitignore</code>文件就已经包含了<code>.deploy*/</code>以及其它一些可自动生成没必要提交的目录及文件。</p>
+<p><code>blog/.gitignore</code> file<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">CNAME</span><br></pre></td></tr></table></figure></p>
+<p>远程仓库下的文件</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-fced769fe21056b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>Ok，到这里你可能已经明白了这个多地同步的思路：打比方说这个 Hexo 框架及 Node.js 环境是个印钞机，部署时它所生成的<code>public/</code>站点目录就是钞票，那么我们同时想在家里和公司印钞怎么解决？印钞机两边都一样，那就是把印钞的模板 fork 两份出来，只需保证两套模板的同步就能确保两边印出来的钞票都是真的了。所以上面的远程仓库就相当于包含了整个印钞模板，整体思路就是这么简单。</p>
+<h4 id="关键部分的操作"><a href="#关键部分的操作" class="headerlink" title="关键部分的操作"></a>关键部分的操作</h4><p>同步了两边的环境都一致并且都可以使用 <code>hexo clean &amp;&amp; hexo d</code> 部署文章后，还需注意的就是每次文章发布完成后执行如下命令：</p>
+<pre><code>$ cd repos/Hexo-Blog/
+$ git add .
+$ git commit -m &quot;commit msg.&quot;
+$ git push origin master
+</code></pre><p>每次开始写文章之前执行如下命令：</p>
+<pre><code>$ cd repos/Hexo-Blog/
+$ git pull origin master
+</code></pre><p>每天结束工作时都 commit 一下是个优秀的习惯。</p>
+<h4 id="“偷懒是人类进步的原动力”"><a href="#“偷懒是人类进步的原动力”" class="headerlink" title="“偷懒是人类进步的原动力”"></a>“偷懒是人类进步的原动力”</h4><p>每次动一行代码都要敲一堆命令来发布和同步？能不能一键搞定这些操作呢？当然可以，不要忘了 Windows 批处理，我们在 <code>repos/Hexo-Blog</code> 下创建三个 bat 脚本</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-cb06140b49a9a0df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><code>blog-pub</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /d D:/Pages/repos/Hexo-Blog/blog</span><br><span class="line"></span><br><span class="line">hexo clean&amp;&amp;hexo d</span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure></p>
+<p><code>blog-pull</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /d d:/Pages/repos/Hexo-Blog</span><br><span class="line"></span><br><span class="line">git pull origin master</span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure></p>
+<p><code>blog-push</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /d D:/Pages/repos/Hexo-blog</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;add post&quot;</span><br><span class="line">git push --all</span><br><span class="line"></span><br><span class="line">pause</span><br></pre></td></tr></table></figure></p>
+<p>然后这些操作只需双击就能搞定了</p>
+<p>既然做到这一步了，那么就能更进一步，我们可以给 Windows 设置一个定时任务，让它开机拉代码，下班前 push 代码，以防忘记</p>
+<p>1、打开任务计划程序（taskschd.msc）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-4df66bd9b4c563ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>2、Alt+A+B 创建基本任务</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-86c786f7de7a1e7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="setup1"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-1ea77d2ae485e2eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="setup2"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-7afa4547bf283312.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="setup3"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-57302f5ba02bff6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="setup4"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-f0ffae3cc791ad2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="setup5"></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3551539-f234f59f24e5fdf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="setup6"></p>
+<p>经过如上设置，在每天的 17:25 Win任务计划程序就会自动执行提交代码的脚本了。</p>
+<p>文中没具体提到怎么创建仓库，怎么关联仓库等等，这些都是 git 基础知识，需要的同学可以参考<a href="http://skyrin.cc/2017/11/23/git-cmd/"> Git 常用命令</a>。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Blog/" rel="tag"># Blog</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/20/how-to-install-tomcat-on-centos7/" rel="next" title="如何在 CentOS 7 上安装 Apache Tomcat 8">
+                <i class="fa fa-chevron-left"></i> 如何在 CentOS 7 上安装 Apache Tomcat 8
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/10/android-cpu-abi/" rel="prev" title="Android CPU ABI">
+                Android CPU ABI <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="skyrin">
+            
+              <p class="site-author-name" itemprop="name">skyrin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/realskyrin" title="GitHub &rarr; https://github.com/realskyrin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cnskyrin@163.com" title="E-Mail &rarr; mailto:cnskyrin@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/32f1afa17c58" title="简书 &rarr; https://www.jianshu.com/u/32f1afa17c58" rel="noopener" target="_blank"><i class="fa fa-fw fa-envira"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/playlist?id=131265554" title="音乐 &rarr; https://music.163.com/playlist?id=131265554" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>音乐</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多地同步的必要性"><span class="nav-text">多地同步的必要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-U-盘"><span class="nav-text">使用 U 盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Git"><span class="nav-text">使用 Git</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#本地初始化一个-git-库存放整个站点"><span class="nav-text">本地初始化一个 git 库存放整个站点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理多层-git-库嵌套的问题"><span class="nav-text">处理多层 git 库嵌套的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关联到远程仓库"><span class="nav-text">关联到远程仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键部分的操作"><span class="nav-text">关键部分的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“偷懒是人类进步的原动力”"><span class="nav-text">“偷懒是人类进步的原动力”</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">skyrin</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a>&nbsp&nbsp|&nbsp&nbspPowered by <a target="_blank" href="https://hexo.io" style="font-weight:bold">Hexo</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'giaWc0iiaMAvjYHn9z3woJO4-gzGzoHsz',
+        appKey: 'H8wOUnSboy1Q1aVUSiDgSjy8',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/skyrin-180.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/skyrin-32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/skyrin-16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'Y45INZ7E93',
+      apiKey: 'e044360fd0bdb0a9e0a36f2f714e0054',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1、你好世界！（Hello  World!）如果编程是教导计算机与用户进行对话的行为，那么首先教计算机如何说话是最有用的。在 Python 中，这是通过 print 语句完成的。 12print &quot;Hello, world!&quot;print &quot;Wether you think you can or can&apos;t, etherway you are right!&quot; print 方法是让你的 Python">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learning Python Class 0 语法">
+<meta property="og:url" content="https://skyrin.cc/2018/03/16/learning-python-class-0-syntax/index.html">
+<meta property="og:site_name" content="Skyrin&#39;s Blog">
+<meta property="og:description" content="1、你好世界！（Hello  World!）如果编程是教导计算机与用户进行对话的行为，那么首先教计算机如何说话是最有用的。在 Python 中，这是通过 print 语句完成的。 12print &quot;Hello, world!&quot;print &quot;Wether you think you can or can&apos;t, etherway you are right!&quot; print 方法是让你的 Python">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-05T01:59:05.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learning Python Class 0 语法">
+<meta name="twitter:description" content="1、你好世界！（Hello  World!）如果编程是教导计算机与用户进行对话的行为，那么首先教计算机如何说话是最有用的。在 Python 中，这是通过 print 语句完成的。 12print &quot;Hello, world!&quot;print &quot;Wether you think you can or can&apos;t, etherway you are right!&quot; print 方法是让你的 Python">
+
+
+
+
+
+
+  <link rel="canonical" href="https://skyrin.cc/2018/03/16/learning-python-class-0-syntax/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Learning Python Class 0 语法 | Skyrin's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyrin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://skyrin.cc/2018/03/16/learning-python-class-0-syntax/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="skyrin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyrin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Learning Python Class 0 语法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-16 13:58:22" itemprop="dateCreated datePublished" datetime="2018-03-16T13:58:22+08:00">2018-03-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-05 09:59:05" itemprop="dateModified" datetime="2018-12-05T09:59:05+08:00">2018-12-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/16/learning-python-class-0-syntax/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/03/16/learning-python-class-0-syntax/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1、你好世界！（Hello-World-）"><a href="#1、你好世界！（Hello-World-）" class="headerlink" title="1、你好世界！（Hello  World!）"></a>1、你好世界！（Hello  World!）</h3><p>如果编程是教导计算机与用户进行对话的行为，那么首先教计算机如何说话是最有用的。在 Python 中，这是通过 print 语句完成的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="string">"Hello, world!"</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Wether you think you can or can't, etherway you are right!"</span></span><br></pre></td></tr></table></figure>
+<p><code>print</code> 方法是让你的 Python 程序与您沟通的最简单的方法。能够指挥这种沟通将是您的编程工具箱中最有价值的工具之一。<br><a id="more"></a></p>
+<h3 id="2、打印语句（Print-Statements）"><a href="#2、打印语句（Print-Statements）" class="headerlink" title="2、打印语句（Print  Statements）"></a>2、打印语句（Print  Statements）</h3><p>有两个不同的 Python 版本。Python 2 和 Python 3 都在全球范围内使用。两者之间最显著的区别在于你如何撰写 <code>print</code> 语法。在 Python 3 中，<code>print</code> 有括号。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Hello World!"</span>)</span><br><span class="line">print(<span class="string">"Deep into distant woodlands winds a mazy way, reaching to overlapping spurs of mountains bathed in their hill-side blue."</span>)</span><br></pre></td></tr></table></figure>
+<p>在本课程中，我们将使用Python 2.如果继续编写Python 3，注意这个关键区别将很有用。</p>
+<h3 id="3、字符串（Strings）"><a href="#3、字符串（Strings）" class="headerlink" title="3、字符串（Strings）"></a>3、字符串（Strings）</h3><p>当用Python打印东西时，我们提供了一个我们想要打印的文本块。Python中的文本被认为是称为字符串的特定类型的数据。一个字符串，如此命名是因为它们是按顺序连接的一系列字母，数字或符号 - 就像通过字符串串联在一起。字符串可以用不同的方式定义</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="string">"This is a good string"</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">'You can use single quotes or double quotes for a string'</span></span><br></pre></td></tr></table></figure>
+<p>上面我们打印了两个字符串，然后试图打印两个不是字符串的东西。尽管双引号（“）和单引号（’）都是定义字符串的可接受方式，但字符串需要用相同类型的引号标记来打开和关闭。</p>
+<p>我们可以使用多个字符串+，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="string">"This is "</span> + <span class="string">"a good string"</span></span><br></pre></td></tr></table></figure>
+<p>此代码将打印出“This is a good string”。</p>
+<h3 id="4、处理错误（Handing-Errors）"><a href="#4、处理错误（Handing-Errors）" class="headerlink" title="4、处理错误（Handing  Errors）"></a>4、处理错误（Handing  Errors）</h3><p>随着我们对Python编程语言更加熟悉，我们遇到了错误和异常。这些是Python在不了解你想要做什么时所做的投诉。每个人都会遇到这些问题，因此阅读和理解它们是一种好习惯。以下是打印字符串时可能遇到的一些常见错误：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="string">"Mismatched quotes will cause a SyntaxError'</span></span><br><span class="line"><span class="string">print Without quotes will cause a NameError</span></span><br></pre></td></tr></table></figure>
+<p>如果引号不匹配，Python会注意到这一点，并通知您，您的代码在其语法中存在错误，因为该行在EOL应该关闭该字符串的双引号出现之前结束（称为an ）。该程序将突然停止运行，并显示以下消息：</p>
+<pre><code>SyntaxError: EOL while scanning a string literal
+</code></pre><p>这意味着一个字符串没有关闭，或者没有用启动它的相同引号来关闭。</p>
+<p>你可能遇到的另一个问题是试图创建一个没有引号的字符串。Python不会将引号中的单词当作命令来对待，如print语句。如果它无法识别这些单词（在Python中或通过其他地方的程序），Python会抱怨代码中有一个NameError。这意味着Python找到了它认为是一个命令，但不知道它是什么意思，因为它没有在任何地方定义。</p>
+<h3 id="5、变量（Variables）"><a href="#5、变量（Variables）" class="headerlink" title="5、变量（Variables）"></a>5、变量（Variables）</h3><p>在Python中，以及一般编程时，我们需要构建用于处理随时间变化的数据的系统。这些数据可能是飞机的位置，或一天中的时间，或者您当前正在观看的电视节目。唯一重要的是，它可能在不同的时间有所不同。Python使用变量来定义可能会发生变化的事物。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greeting_message = <span class="string">"Welcome to Codecademy!"</span></span><br><span class="line">current_excercise = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，我们定义了一个变量greeting_message，并将其设置为等于字符串“Welcome to Codecademy！”。它还定义了一个变量current_exercise，并将其设置为等于5。</p>
+<h3 id="6、运算（Arithmetic）"><a href="#6、运算（Arithmetic）" class="headerlink" title="6、运算（Arithmetic）"></a>6、运算（Arithmetic）</h3><p>计算机能够做得非常好的一件事是执行算术。加法，减法，乘法，除法和其他数值计算在大多数编程语言中都很容易实现，Python也不例外。一些例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mirthful_addition = <span class="number">12381</span> + <span class="number">91817</span></span><br><span class="line">amazing_subtraction = <span class="number">981</span> - <span class="number">312</span></span><br><span class="line">trippy_multiplication = <span class="number">38</span> * <span class="number">902</span></span><br><span class="line">happy_division = <span class="number">540</span> / <span class="number">45</span></span><br><span class="line">sassy_combinations = <span class="number">129</span> * <span class="number">1345</span> + <span class="number">120</span> / <span class="number">6</span> - <span class="number">12</span></span><br></pre></td></tr></table></figure>
+<p>上面是一些算术运算，每个运算都分配给一个变量。该变量将保存每个操作的最终结果。算术操作符的组合遵循通常的操作顺序。</p>
+<p>Python还提供了一个叫做模运算符的分支。模运算符由%分割后的余数表示并返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">is_this_number_odd = <span class="number">15</span> % <span class="number">2</span></span><br><span class="line">is_this_number_divisible_by_seven = <span class="number">133</span> % <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>在上面的代码块中，我们使用模运算符来查找15除以的剩余部分2。因为15其余的是奇数1。</p>
+<p>我们也检查剩下的133 / 7。由于133除以7没有余数，133 % 7评估为0。</p>
+<h3 id="7、更新变量（Updating-Variables）"><a href="#7、更新变量（Updating-Variables）" class="headerlink" title="7、更新变量（Updating  Variables）"></a>7、更新变量（Updating  Variables）</h3><p>改变变量的内容是基本操作之一。随着程序流程的进展，数据应该更新以反映已经发生的变化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fish_in_clarks_pond = <span class="number">50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"Catching fish"</span></span><br><span class="line"></span><br><span class="line">number_of_fish_caught = <span class="number">10</span></span><br><span class="line">fish_in_clarks_pond = fish_in_clarks_pond - number_of_fish_caught</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，我们从当地池塘中的50条鱼开始。捕捉10条鱼后，我们更新池塘中鱼的数量为池中鱼的原始数量减去捕获的鱼的数量。在这个代码块的末尾，变量fish_in_clarks_pond等于40。</p>
+<p>通过向变量的原始内容添加或减去数字来更新变量具有其自己的速记，以使其更快且更易于阅读。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">money_in_wallet = <span class="number">40</span></span><br><span class="line">sandwich_price = <span class="number">7.50</span></span><br><span class="line">sales_tax = <span class="number">.08</span> * sandwich_price</span><br><span class="line"></span><br><span class="line">sandwich_price += sales_tax</span><br><span class="line">money_in_wallet -= sandwich_price</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，我们使用三明治的价格来计算销售税。计算完税后，我们将其添加到三明治的总价中。最后，我们通过减少money_in_wallet三明治的成本（含税）来完成交易。</p>
+<h3 id="8、注释（Comments）"><a href="#8、注释（Comments）" class="headerlink" title="8、注释（Comments）"></a>8、注释（Comments）</h3><p>大多数情况下，代码的编写方式应该很容易理解。但是，如果您想包含一段信息来解释代码的一部分，则可以使用该#符号。前面有一行文字#称为评论。机器不运行这个代码 - 它只是供人类阅读。当你稍后回顾你的代码时，评论可能会帮助你弄清楚它打算做什么。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># this variable counts how many rows of the spreadsheet we have:</span></span><br><span class="line">row_count = <span class="number">13</span></span><br></pre></td></tr></table></figure>
+<h3 id="9、数字（Numbers）"><a href="#9、数字（Numbers）" class="headerlink" title="9、数字（Numbers）"></a>9、数字（Numbers）</h3><p>变量也可以保存数值。Python中最简单的数字是整数，它是一个没有小数点的整数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int1 = <span class="number">1</span></span><br><span class="line">int2 = <span class="number">10</span></span><br><span class="line">int3 = <span class="number">-5</span></span><br></pre></td></tr></table></figure>
+<p>带小数点的数字称为浮点数。您可以在小数点后面使用数字定义浮点数，或者在末尾添加小数点：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float1 = <span class="number">1.0</span></span><br><span class="line">float2 = <span class="number">10.</span></span><br><span class="line">float3 = <span class="number">-5.5</span></span><br></pre></td></tr></table></figure>
+<p>您还可以使用科学记数法定义浮点数，并e指示10的权：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># this evaluates to 150:</span></span><br><span class="line">float4 = <span class="number">1.5e2</span></span><br></pre></td></tr></table></figure>
+<h3 id="10、两种类型的除法（Tow-Types-of-Division）"><a href="#10、两种类型的除法（Tow-Types-of-Division）" class="headerlink" title="10、两种类型的除法（Tow  Types of Division）"></a>10、两种类型的除法（Tow  Types of Division）</h3><p>在Python 2中，当我们分割两个整数时，我们得到一个整数。当商是一个整数时，一切正常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">quotient = <span class="number">6</span>/<span class="number">2</span></span><br><span class="line"><span class="comment"># the value of quotient is now 3, which makes sense</span></span><br></pre></td></tr></table></figure>
+<p>但是，如果数字不能均匀分割，则除法结果将被截断为整数。换句话说，商被四舍五入为整数。当您希望收到一个小数并且您收到一个向下舍入的整数时，这可能会令人惊讶：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">quotient = <span class="number">7</span>/<span class="number">2</span></span><br><span class="line"><span class="comment"># quotient 的值为 3，即使实际中应该是 3.5 才对</span></span><br></pre></td></tr></table></figure>
+<p>为了产生一个浮点数作为结果，程序员经常改变分子或分母（或两者）为浮点数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">quotient1 = <span class="number">7.</span>/<span class="number">2</span></span><br><span class="line"><span class="comment"># the value of quotient1 is 3.5</span></span><br><span class="line">quotient2 = <span class="number">7</span>/<span class="number">2.</span></span><br><span class="line"><span class="comment"># the value of quotient2 is 3.5</span></span><br><span class="line">quotient3 = <span class="number">7.</span>/<span class="number">2.</span></span><br><span class="line"><span class="comment"># the value of quotient3 is 3.5</span></span><br></pre></td></tr></table></figure>
+<h3 id="11、多行字符串（Multi-line-Strings）"><a href="#11、多行字符串（Multi-line-Strings）" class="headerlink" title="11、多行字符串（Multi-line  Strings）"></a>11、多行字符串（Multi-line  Strings）</h3><p>我们已经知道了如何使用单引号及双引号来声明一个字符串，如果我们想把一个字符串分成多行，我们也可以用三引号：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">address_string = <span class="string">"""136 Whowho Rd</span></span><br><span class="line"><span class="string">Apt 7</span></span><br><span class="line"><span class="string">Whosville, WZ 44494"""</span></span><br></pre></td></tr></table></figure>
+<p>如上地址被分成多行，但它仍然包含在 <code>address_string</code> 这一个变量中。</p>
+<p>当一个字符串如下所示没有被分配到变量时，它将被视为一个多行注释，这有助于您的代码变得更加复杂：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""The following piece of code does the following steps:</span></span><br><span class="line"><span class="string">takes in some input</span></span><br><span class="line"><span class="string">does An Important Calculation</span></span><br><span class="line"><span class="string">returns the modified input and a string that says "Success!" or "Failure..."</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="meta">... </span>a complicated piece of code here...</span><br></pre></td></tr></table></figure>
+<h3 id="12、布尔值（Booleans）"><a href="#12、布尔值（Booleans）" class="headerlink" title="12、布尔值（Booleans）"></a>12、布尔值（Booleans）</h3><p>有时候我们需要变量来表示真或者假，这种我们永远只能二选一的变量类型就叫做布尔值（boolen），在 Python 中，我们使用关键字 <code>True</code> 和 <code>False</code> 来定义一个布尔值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="keyword">True</span></span><br><span class="line">b = <span class="keyword">False</span></span><br></pre></td></tr></table></figure>
+<p>布尔实际上是一种特殊的整型，<code>Ture</code> 相当于整型 1，并且表现相同。<code>False</code> 相当于整型 0。</p>
+<h3 id="13、值异常（ValueError）"><a href="#13、值异常（ValueError）" class="headerlink" title="13、值异常（ValueError）"></a>13、值异常（ValueError）</h3><p>Python会根据给定的值自动为变量分配合适的数据类型。一个变量的值7是一个整数，7.是一个浮点数，”7”是一个字符串。有时我们会想要将变量转换为不同的数据类型。例如，如果我们想打印出一个整数作为字符串的一部分，我们希望首先将该整数转换为一个字符串。我们可以这样做str()：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">13</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">"I am "</span> + str(age) + <span class="string">" years old!"</span></span><br></pre></td></tr></table></figure>
+<p>这将打印：</p>
+<pre><code>&gt;&gt;&gt; &quot;I am 13 years old!&quot;
+</code></pre><p>同样，如果我们有一个字符串，”7”并且我们想对它执行算术运算，我们必须将它转换为数字数据类型。我们可以这样做int()：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">number1 = <span class="string">"100"</span></span><br><span class="line">number2 = <span class="string">"10"</span></span><br><span class="line"></span><br><span class="line">string_addition = number1 + number2 </span><br><span class="line"><span class="comment">#string_addition now has a value of "10010"</span></span><br><span class="line"></span><br><span class="line">int_addition = int(number1) + int(number2)</span><br><span class="line"><span class="comment">#int_addition has a value of 110</span></span><br></pre></td></tr></table></figure>
+<p>如果您使用int()浮点数，它会将数字向下舍入。要保留小数点，您可以使用float()：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string_num = <span class="string">"7.5"</span></span><br><span class="line"><span class="keyword">print</span> int(string_num)</span><br><span class="line"><span class="keyword">print</span> float(string_num)</span><br></pre></td></tr></table></figure>
+<pre><code>&gt;&gt;&gt; 7
+&gt;&gt;&gt; 7.5
+</code></pre>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/13/build-static-website/" rel="next" title="搭建静态网站">
+                <i class="fa fa-chevron-left"></i> 搭建静态网站
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/20/how-to-install-nginx-on-centos7/" rel="prev" title="如何在 CentOS 7 上安装 Nginx">
+                如何在 CentOS 7 上安装 Nginx <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="skyrin">
+            
+              <p class="site-author-name" itemprop="name">skyrin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/realskyrin" title="GitHub &rarr; https://github.com/realskyrin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cnskyrin@163.com" title="E-Mail &rarr; mailto:cnskyrin@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/32f1afa17c58" title="简书 &rarr; https://www.jianshu.com/u/32f1afa17c58" rel="noopener" target="_blank"><i class="fa fa-fw fa-envira"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/playlist?id=131265554" title="音乐 &rarr; https://music.163.com/playlist?id=131265554" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>音乐</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、你好世界！（Hello-World-）"><span class="nav-text">1、你好世界！（Hello  World!）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、打印语句（Print-Statements）"><span class="nav-text">2、打印语句（Print  Statements）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、字符串（Strings）"><span class="nav-text">3、字符串（Strings）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、处理错误（Handing-Errors）"><span class="nav-text">4、处理错误（Handing  Errors）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、变量（Variables）"><span class="nav-text">5、变量（Variables）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、运算（Arithmetic）"><span class="nav-text">6、运算（Arithmetic）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、更新变量（Updating-Variables）"><span class="nav-text">7、更新变量（Updating  Variables）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、注释（Comments）"><span class="nav-text">8、注释（Comments）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9、数字（Numbers）"><span class="nav-text">9、数字（Numbers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、两种类型的除法（Tow-Types-of-Division）"><span class="nav-text">10、两种类型的除法（Tow  Types of Division）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、多行字符串（Multi-line-Strings）"><span class="nav-text">11、多行字符串（Multi-line  Strings）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、布尔值（Booleans）"><span class="nav-text">12、布尔值（Booleans）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13、值异常（ValueError）"><span class="nav-text">13、值异常（ValueError）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">skyrin</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a>&nbsp&nbsp|&nbsp&nbspPowered by <a target="_blank" href="https://hexo.io" style="font-weight:bold">Hexo</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'giaWc0iiaMAvjYHn9z3woJO4-gzGzoHsz',
+        appKey: 'H8wOUnSboy1Q1aVUSiDgSjy8',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

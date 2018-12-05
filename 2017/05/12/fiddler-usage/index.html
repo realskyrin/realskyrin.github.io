@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/skyrin-180.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/skyrin-32.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/skyrin-16.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'Y45INZ7E93',
+      apiKey: 'e044360fd0bdb0a9e0a36f2f714e0054',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="概述Fiddler 是一个 http 协议 调试代理工具，它能够记录并检查所有你的电脑和互联网之间的 http 通讯，设置断点，查看所有的“进出” Fiddler 的数据。Fiddler 要比其他的网络调试器要更加简单，因为它不仅仅使 http 通讯变得透明，还提供了一个用户友好的格式。">
+<meta name="keywords" content="Tools,Fiddler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fiddler 极速上手">
+<meta property="og:url" content="https://skyrin.cc/2017/05/12/fiddler-usage/index.html">
+<meta property="og:site_name" content="Skyrin&#39;s Blog">
+<meta property="og:description" content="概述Fiddler 是一个 http 协议 调试代理工具，它能够记录并检查所有你的电脑和互联网之间的 http 通讯，设置断点，查看所有的“进出” Fiddler 的数据。Fiddler 要比其他的网络调试器要更加简单，因为它不仅仅使 http 通讯变得透明，还提供了一个用户友好的格式。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-0692867d0f07c24e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-b6fc51ea04e6f3a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-e3983d220b04e513.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-de71fe11efc72956.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-bd06c0fa63d37c55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-9fe16479d8ed0ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-064555cc0f09566a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-7b0fa0db8c9f912e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-9e5d08f2945c68eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-689cfbda3f3534f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-65b93ede5774bde3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-c109c500fb3973ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-0a3b1739b4c83b32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-cdb068c991235afe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-c386b44eb2916edc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-e5c8112d4f42e527.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/3551539-ccef6eec2e716ce3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-12-05T01:59:05.350Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fiddler 极速上手">
+<meta name="twitter:description" content="概述Fiddler 是一个 http 协议 调试代理工具，它能够记录并检查所有你的电脑和互联网之间的 http 通讯，设置断点，查看所有的“进出” Fiddler 的数据。Fiddler 要比其他的网络调试器要更加简单，因为它不仅仅使 http 通讯变得透明，还提供了一个用户友好的格式。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/3551539-0692867d0f07c24e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="https://skyrin.cc/2017/05/12/fiddler-usage/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Fiddler 极速上手 | Skyrin's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Skyrin's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://skyrin.cc/2017/05/12/fiddler-usage/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="skyrin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Skyrin's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Fiddler 极速上手
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-12 20:51:12" itemprop="dateCreated datePublished" datetime="2017-05-12T20:51:12+08:00">2017-05-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-05 09:59:05" itemprop="dateModified" datetime="2018-12-05T09:59:05+08:00">2018-12-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/12/fiddler-usage/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2017/05/12/fiddler-usage/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><a href="http://www.telerik.com/fiddler" target="_blank" rel="noopener">Fiddler</a> 是一个 <a href="http://baike.baidu.com/item/http%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">http 协议</a> 调试代理工具，它能够记录并检查所有你的电脑和互联网之间的 http 通讯，设置断点，查看所有的“进出” Fiddler 的数据。Fiddler 要比其他的网络调试器要更加简单，因为它不仅仅使 http 通讯变得透明，还提供了一个用户友好的格式。</p>
+<a id="more"></a>
+<blockquote>
+<p>你只需要知道它是一个 “调试代理工具” 就 OK 了，Fiddler 的功能相当强大，网上的教程也有一大堆，本文秉承着从零开始快速上手的理念，所以非必要的地方不会讲的太细，文末推荐了一些写的不错的教程以供喜欢研究的同学仔细研究，如果你英文不错的话直达<a href="http://docs.telerik.com/fiddler/KnowledgeBase/QuickExec" target="_blank" rel="noopener">官方文档</a>任何教程都不用看了，包括本篇。</p>
+</blockquote>
+<h2 id="Fiddler-UI"><a href="#Fiddler-UI" class="headerlink" title="Fiddler UI"></a>Fiddler UI</h2><p>Fiddler 的界面大概就是下面这个样子</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-0692867d0f07c24e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="Fiddler-配置"><a href="#Fiddler-配置" class="headerlink" title="Fiddler 配置"></a>Fiddler 配置</h2><p><a href="http://www.telerik.com/fiddler" target="_blank" rel="noopener">下载安装</a>后启动 Fiddler 设置成如下状态，期间需要安装证书 FiddlerRoot.cer。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-b6fc51ea04e6f3a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="step 1"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-e3983d220b04e513.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="step 2"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-de71fe11efc72956.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="step 3安装证书"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-bd06c0fa63d37c55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="step 4"></p>
+<ul>
+<li>最后在 Fiddler 命令行中输入 start 并回车，确保其处于 Capturing 状态</li>
+</ul>
+<h2 id="Android-端代理设置"><a href="#Android-端代理设置" class="headerlink" title="Android 端代理设置"></a>Android 端代理设置</h2><p>因为 Fiddler 是 PC 与 服务器之间的代理，而我们需要修改 Android 设备请求的数据包，所以让 PC 作为 Android 设备的代理继而通过 Fiddler 代理 PC 我们就可以在 Fiddler 中抓取到 Android 设备的请求数据了。</p>
+<ul>
+<li>保证移动设备与 PC 在同一局域网下</li>
+<li>获取 PC 的 IP 地址</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-9fe16479d8ed0ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>设置 Android 设备的 WIFI 代理服务器及端口号（这个端口就是 Fiddler 在一直监听的，默认是 8888）</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-064555cc0f09566a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<ul>
+<li>移动端可以在浏览器中访问 127.0.0.1:8888 来安装证书。如果不安装证书的话只能抓取 HTTP 请求</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-7b0fa0db8c9f912e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>以上步骤没问题的话，随便打开一个网页，应该就能在 Fiddler 中捕获到移动端的请求会话了。</p>
+<h2 id="过滤器-（Filters）"><a href="#过滤器-（Filters）" class="headerlink" title="过滤器 （Filters）"></a>过滤器 （Filters）</h2><p>上面的步骤中，随便打开一个网页，你可能会看见一堆会话，包括一些其他应用的消息推送，状态同步等待后台网络请求也会显示在会话中，这时就需要过滤掉无用的会话，如下设置后就只显示来自 “weatherapi.market.xiaomi.com” 的会话了，多个 Host 使用 “;” 隔开或一行一个。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-9e5d08f2945c68eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<h2 id="检查器-（Inspectors）"><a href="#检查器-（Inspectors）" class="headerlink" title="检查器 （Inspectors）"></a>检查器 （Inspectors）</h2><p>在检查器中可以预览任意一条会话的详细信息（请求体、响应体等）</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-689cfbda3f3534f3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="自动响应器-（AutoResponder）"><a href="#自动响应器-（AutoResponder）" class="headerlink" title="自动响应器 （AutoResponder）"></a>自动响应器 （AutoResponder）</h2><p>自动响应器可以模拟一个响应，向符合匹配规则的请求返回自定义内容，匹配规则详细介绍<a href="http://blog.csdn.net/u012223913/article/details/50175637" target="_blank" rel="noopener">看这里</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-65b93ede5774bde3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="简单使用场景"><a href="#简单使用场景" class="headerlink" title="简单使用场景"></a>简单使用场景</h2><p>开发中我们可能会经常遇到这种情况，比如测试登录模块，数据解析调试等场景时，需要多次频繁的请求服务器返回各式各样的数据，可能需要不完整的、有错误的返回结果测试应用的健壮性，需要不同的网络环境来模拟户外使用的场景；如果按照常规方式来测的话可能需要后台给一个测试接口，各种数据后台改一下再请求一次测一下，或者直接把数据放到文件里直接读取，而网络环境更是很难模拟；那么有了 Fiddler ，这种调试就轻松多了，下面是一个简单的修改返回数据示例。</p>
+<ul>
+<li>这是 Meizu 系统内置的天气软件</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-c109c500fb3973ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>下拉刷新一下数据，可以看到 Fiddler 中捕获到的会话及返回的天气数据</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-0a3b1739b4c83b32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>保存返回数据</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-cdb068c991235afe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>编辑刚刚保存的 Json 数据，这个 <a href="http://www.qqe2.com/" target="_blank" rel="noopener">Json 编辑工具</a>不错</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-c386b44eb2916edc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>在自动响应器中添加匹配规则，修改返回数据为刚才我们改过的文件</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-e5c8112d4f42e527.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>再次下拉刷新天气信息，就从文本中返回如下数据了</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/3551539-ccef6eec2e716ce3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>OK 以上差不多就是 Fiddler 的基础用法了，它还有许多更强大的调试功能和使用场景，喜欢研究的同学可以看看：</p>
+<p><a href="http://tmq.qq.com/2016/12/fiddler_packet_capture/" target="_blank" rel="noopener">零基础学习抓包改包</a><br><a href="http://blog.csdn.net/u012223913/article/details/50175637" target="_blank" rel="noopener">Fiddler自动响应AutoResponder正则匹配</a><br><a href="http://docs.telerik.com/fiddler/KnowledgeBase/QuickExec" target="_blank" rel="noopener">官方文档</a><br><a href="http://docs.telerik.com/fiddler/KnowledgeBase/QuickExec" target="_blank" rel="noopener">官方文档</a><br><a href="http://docs.telerik.com/fiddler/KnowledgeBase/QuickExec" target="_blank" rel="noopener">官方文档</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Tools/" rel="tag"># Tools</a>
+          
+            <a href="/tags/Fiddler/" rel="tag"># Fiddler</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/09/android-fileuriexposedexception-resolve/" rel="next" title="Android 7.0 FileUriExposedException 的处理">
+                <i class="fa fa-chevron-left"></i> Android 7.0 FileUriExposedException 的处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/31/float-window-utils/" rel="prev" title="FloatWindowUtils 实现及事件冲突解决详解">
+                FloatWindowUtils 实现及事件冲突解决详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="skyrin">
+            
+              <p class="site-author-name" itemprop="name">skyrin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/realskyrin" title="GitHub &rarr; https://github.com/realskyrin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:cnskyrin@163.com" title="E-Mail &rarr; mailto:cnskyrin@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/32f1afa17c58" title="简书 &rarr; https://www.jianshu.com/u/32f1afa17c58" rel="noopener" target="_blank"><i class="fa fa-fw fa-envira"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/playlist?id=131265554" title="音乐 &rarr; https://music.163.com/playlist?id=131265554" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>音乐</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fiddler-UI"><span class="nav-text">Fiddler UI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fiddler-配置"><span class="nav-text">Fiddler 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-端代理设置"><span class="nav-text">Android 端代理设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器-（Filters）"><span class="nav-text">过滤器 （Filters）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查器-（Inspectors）"><span class="nav-text">检查器 （Inspectors）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动响应器-（AutoResponder）"><span class="nav-text">自动响应器 （AutoResponder）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单使用场景"><span class="nav-text">简单使用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">skyrin</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a target="_blank" href="https://pages.coding.me" style="font-weight:bold">Coding Pages</a>&nbsp&nbsp|&nbsp&nbspPowered by <a target="_blank" href="https://hexo.io" style="font-weight:bold">Hexo</a></div>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'giaWc0iiaMAvjYHn9z3woJO4-gzGzoHsz',
+        appKey: 'H8wOUnSboy1Q1aVUSiDgSjy8',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.6.0"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
